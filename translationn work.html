@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work - Translation Job</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/work.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .correct-data {
+            font-weight: bold;
+            color: green;
+            margin-left: 5px;
+        }
+
+        .error-message {
+            display: block;
+            margin-top: 5px;
+            color: red;
+        }
+
+        .form-actions button {
+            margin-right: 10px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <a href="dashboard.html" class="back-button">
+        <i class="fas fa-chevron-left"></i>
+    </a>
+    <header class="page-header">
+        <div class="header-content">
+            <h1 class="gradient-text">Translation Job</h1>
+        </div>
+    </header>
+    <main class="container">
+        <div class="trial-overlay"></div>
+        <div class="glass-card trial-earnings">
+            <div class="earnings-header">
+                <h2 class="gradient-text">
+                    <i class="fas fa-language"></i>
+                    <span id="planDuration">Free Trial</span>
+                </h2>
+                <div class="plan-badge">
+                    <span class="active-plan" id="currentPlan">Free Trial</span>
+                    <button class="upgrade-btn" title="Upgrade Plan">
+                        <i class="fas fa-crown"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="earnings-grid">
+                <div class="earnings-card">
+                    <h3>Earning Wallet</h3>
+                    <div class="amount">₹0.00</div>
+                </div>
+                <div class="earnings-card">
+                    <h3>Bonus Wallet</h3>
+                    <div class="amount">₹0.00</div>
+                </div>
+            </div>
+            <div class="stats-container">
+                <div class="progress-circle">
+                    <div class="counter-wrapper">
+                        <span class="day-number">0</span>
+                        <span class="target-count">/50</span>
+                    </div>
+                </div>
+                <div class="stats-list">
+                    <div class="stat-item">
+                        <span class="stat-label">Today Translations</span>
+                        <span class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Total Translations</span>
+                        <span class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Worked Days</span>
+                        <span class="stat-value">1</span>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-primary submit-btn" disabled>
+                Submit
+            </button>
+        </div>
+        <div class="glass-card work-form">
+            <h2 class="gradient-text">Translate Text</h2>
+            <div class="form-group">
+                <table>
+                    <tr>
+                        <th>1</th>
+                        <td>
+                            <label for="englishText">English Text (Approx. 100 words)</label>
+                            <span class="correct-data" id="correctEnglishText"></span>
+                            <textarea id="englishText" rows="4" readonly></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>
+                            <label for="typedEnglishText">Type the English text shown above</label>
+                            <textarea id="typedEnglishText" rows="2" required></textarea>
+                            <span class="error-message" id="englishTypingError" class="hidden">Please check your English typing.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            <button type="button" class="btn-primary" id="checkEnglishBtn">
+                                <i class="fas fa-check-circle"></i>
+                                Check English
+                            </button>
+                        </td>
+                    </tr>
+                    <tr id="translateToRow" class="hidden">
+                        <th>3</th>
+                        <td>
+                            <label for="targetLanguage">Translate To:</label>
+                            <span id="randomTargetLanguage" class="correct-data"></span>
+                            <select id="targetLanguage">
+                                <option value="">-- Select Language --</option>
+                                <option value="spanish">Spanish</option>
+                                <option value="french">French</option>
+                                <option value="german">German</option>
+                                <option value="italian">Italian</option>
+                                <option value="portuguese">Portuguese</option>
+                                <option value="russian">Russian</option>
+                                <option value="japanese">Japanese</option>
+                                <option value="korean">Korean</option>
+                                <option value="chinese">Chinese</option>
+                                <option value="arabic">Arabic</option>
+                                <option value="hindi">Hindi</option>
+                                <option value="bengali">Bengali</option>
+                                <option value="urdu">Urdu</option>
+                                <option value="turkish">Turkish</option>
+                                <option value="swahili">Swahili</option>
+                                <option value="dutch">Dutch</option>
+                                <option value="swedish">Swedish</option>
+                                <option value="polish">Polish</option>
+                                <option value="norwegian">Norwegian</option>
+                                <option value="danish">Danish</option>
+                            </select>
+                            <span class="error-message" id="languageError" class="hidden">Please select the correct language.</span>
+                        </td>
+                    </tr>
+                    <tr id="translatedTextRow" class="hidden">
+                        <th>4</th>
+                        <td>
+                            <label for="translatedText">Translated Text</label>
+                            <textarea id="translatedText" rows="4" readonly></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn-primary hidden" id="translateBtn">
+                    <i class="fas fa-language"></i>
+                    Translate
+                </button>
+                <button type="button" class="btn-primary hidden" id="saveTranslationBtn">
+                    <i class="fas fa-save"></i>
+                    Save
+                </button>
+            </div>
+        </div>
+    </main>
+    <div id="translationModal" class="modal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3 class="gradient-text">Translation Result</h3>
+            </div>
+            <div class="modal-body">
+                <p id="modalTranslatedText"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" id="modalSaveBtn">Save</button>
+                <button class="btn-secondary" id="modalCloseBtn">Close</button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="js/translation.js"></script>
+</body>
+</html>
